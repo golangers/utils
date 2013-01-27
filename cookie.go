@@ -18,7 +18,7 @@ cookie[6] => secure bool
 */
 func SetCookie(w http.ResponseWriter, target map[string]string, args ...interface{}) *http.Cookie {
 	if len(args) < 2 {
-		return
+		return nil
 	}
 
 	const LEN = 7
@@ -45,13 +45,13 @@ func SetCookie(w http.ResponseWriter, target map[string]string, args ...interfac
 	if v, ok := cookie[0].(string); ok {
 		name = v
 	} else {
-		return
+		return nil
 	}
 
 	if v, ok := cookie[1].(string); ok {
 		value = v
 	} else {
-		return
+		return nil
 	}
 
 	if v, ok := cookie[2].(int); ok {
@@ -89,7 +89,7 @@ func SetCookie(w http.ResponseWriter, target map[string]string, args ...interfac
 
 		if target != nil {
 			if expires > 0 {
-				target[c.Name] = pCookie.Value
+				target[pCookie.Name] = pCookie.Value
 			} else {
 				delete(target, pCookie.Name)
 			}
