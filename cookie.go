@@ -2,7 +2,6 @@ package utils
 
 import (
 	"net/http"
-	"net/url"
 	"strconv"
 	"time"
 )
@@ -76,7 +75,7 @@ func SetCookie(w http.ResponseWriter, target map[string]string, args ...interfac
 
 	pCookie := &http.Cookie{
 		Name:     name,
-		Value:    url.QueryEscape(value),
+		Value:    value,
 		Path:     path,
 		Domain:   domain,
 		HttpOnly: httpOnly,
